@@ -42,7 +42,7 @@ while True:
             pyautogui.rightClick()
             pyautogui.sleep(1)
         if ((left[0].y - left[1].y) < 0.004) and ((right[0].y - right[1].y) < 0.004):
-            pyautogui.click()
-            pyautogui.sleep(1)
+            #pyautogui.click()
+            pyautogui.sleep(2)
     cv2.imshow('Eye Controlled Mouse', frame)
     cv2.waitKey(1)
