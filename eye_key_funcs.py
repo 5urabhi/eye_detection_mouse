@@ -6,7 +6,7 @@ import dlib
 import sys
 
 # # ------------------------------------ Inputs
-ratio_blinking = 0.2  # calibrate with my eyes
+ratio_blinking = 0.21  # calibrate with my eyes
 dict_color = {'green': (0, 255, 0),
               'blue': (255, 0, 0),
               'red': (0, 0, 255),
@@ -124,6 +124,7 @@ def is_blinking(eye_coordinates):
         (eye_coordinates[3][0] - eye_coordinates[2][0]) ** 2 + (eye_coordinates[3][1] - eye_coordinates[2][1]) ** 2)
 
     ratio = minor_axis / major_axis
+    print('Blinking ration',ratio)
 
     if ratio < ratio_blinking: blinking = True
 

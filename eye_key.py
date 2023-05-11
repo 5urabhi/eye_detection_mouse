@@ -40,22 +40,40 @@ key_points = get_keyboard(width_keyboard=width_keyboard,
 # upload face/eyes predictors
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(
-    "/Users/kumararnav/PycharmProjects/eye-writing-easy-master/shape_predictor_68_face_landmarks.dat")
+    "/Users/surabhi/Desktop/eye_trackers/eye_detection_mouse/shape_predictor_68_face_landmarks1.dat")
 # -------------------------------------------------------------------
 
 # ------------------------------------------------------------------- CALIBRATION
+"""
 corners = [offset_keyboard,
            (width_keyboard + offset_keyboard[0], height_keyboard + offset_keyboard[1]),
            (width_keyboard + offset_keyboard[0], offset_keyboard[1]),
-           (offset_keyboard[0], height_keyboard + offset_keyboard[1])]
+           (offset_keyboard[0], height_keyboard + offset_keyboard[1]),
+           (500,500),
+           (250,250),
+           (650,650),
+           (850,850),
+           (1000,100),
+           (1500,1500)]
+           """
+corners=[(128, 90),   (384, 90) ,  (640, 90) ,   (896, 90),   (1152, 90),
+(128, 270) , (384, 270)  ,(640, 270) ,  (896, 270),  (1152, 270),
+
+(128, 450),  (384, 450),  (640, 450)  , (896, 450),  (1152, 450),
+
+(128, 630)  ,(384, 630),  (640, 630) ,  (896, 630) , (1152, 630),
+]
 calibration_cut = []
 corner = 0
 
-while corner < 4:  # calibration of 4 corners
+while corner < 20:  # calibration of 4 corners
     print("1")
 
     ret, frame = camera.read()  # Capture frame
     frame = adjust_frame(frame)  # rotate / flip
+    frame_h,frame_w=frame.shape[:2]
+    print('frame_width',frame_w)
+    print('frame_height',frame_h)
 
     gray_scale_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # gray-scale to work with
 
