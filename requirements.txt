@@ -1,0 +1,17 @@
+joblib
+MouseInfo
+numpy
+opencv-python
+Pillow
+PyAutoGUI
+PyGetWindow
+PyMsgBox
+pyperclip
+PyRect
+PyScreeze
+python3-xlib
+PyTweening
+scikit-learn
+scipy
+sklearn
+threadpoolctl
