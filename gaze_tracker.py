@@ -9,6 +9,7 @@ from eye_tracker import EyeTracker
 from model import Eye
 from calibration import Calibration
 
+
 class GazeTracker():
 
     def __init__(self):
@@ -27,18 +28,19 @@ class GazeTracker():
         self.right_eye = self.eye_tracker.right_eye()
         self._calculate_vector()
 
-
     def _calculate_vector(self):
 
         vector = None
         vector_left = None
         vector_right = None
-#        print(self.left_eye)
-#        print(self.right_eye)
+        #        print(self.left_eye)
+        #        print(self.right_eye)
         if self.left_eye and self.left_eye.purkinje and self.left_eye.pupil_center:
-            vector_left = (self.left_eye.purkinje[0] - self.left_eye.pupil_center[0], self.left_eye.purkinje[1] - self.left_eye.pupil_center[1])
+            vector_left = (self.left_eye.purkinje[0] - self.left_eye.pupil_center[0],
+                           self.left_eye.purkinje[1] - self.left_eye.pupil_center[1])
         if self.right_eye and self.right_eye.purkinje and self.right_eye.pupil_center:
-            vector_right = (self.right_eye.purkinje[0] - self.right_eye.pupil_center[0], self.right_eye.purkinje[1] - self.right_eye.pupil_center[1])
+            vector_right = (self.right_eye.purkinje[0] - self.right_eye.pupil_center[0],
+                            self.right_eye.purkinje[1] - self.right_eye.pupil_center[1])
 
         if vector_left:
             vector = vector_left
@@ -56,10 +58,10 @@ class GazeTracker():
 
         gaze = None
         if self.vector:
-#            try:
+            #            try:
             gaze = self.calibration.compute(self.vector)
-#            except sklearn.exceptions.NotFittedError:
-#            except:
-#                print("CALIBRATION REQUIRED!")
+        #            except sklearn.exceptions.NotFittedError:
+        #            except:
+        #                print("CALIBRATION REQUIRED!")
 
-        return gaze 
+        return gaze
