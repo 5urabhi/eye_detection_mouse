@@ -59,13 +59,13 @@ corners = [offset_keyboard,
            (1000,100),
            (1500,1500)]
            """
-corners=[(128, 90),   (384, 90) ,  (640, 90) ,   (896, 90),   (1152, 90),
-(128, 270) , (384, 270)  ,(640, 270) ,  (896, 270),  (1152, 270),
+corners = [(128, 90), (384, 90), (640, 90), (896, 90), (1152, 90),
+           (128, 270), (384, 270), (640, 270), (896, 270), (1152, 270),
 
-(128, 450),  (384, 450),  (640, 450)  , (896, 450),  (1152, 450),
+           (128, 450), (384, 450), (640, 450), (896, 450), (1152, 450),
 
-(128, 630)  ,(384, 630),  (640, 630) ,  (896, 630) , (1152, 630),
-]
+           (128, 630), (384, 630), (640, 630), (896, 630), (1152, 630),
+           ]
 calibration_cut = []
 corner = 0
 
@@ -74,9 +74,9 @@ while corner < 20:  # calibration of 4 corners
 
     ret, frame = camera.read()  # Capture frame
     frame = adjust_frame(frame)  # rotate / flip
-    frame_h,frame_w=frame.shape[:2]
-    print('frame_width',frame_w)
-    print('frame_height',frame_h)
+    frame_h, frame_w = frame.shape[:2]
+    print('frame_width', frame_w)
+    print('frame_height', frame_h)
 
     gray_scale_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # gray-scale to work with
 
@@ -193,9 +193,10 @@ while True:
                                             point=pupil_on_cut)
 
         pointer = project_on_page(img_from=cut_frame[:, :, 0],  # needs a 2D image for the 2D shape
-                                            img_to=keyboard_page[:, :, 0],  # needs a 2D image for the 2D shape
-                                            point=pupil_on_cut)
+                                  img_to=keyboard_page[:, :, 0],  # needs a 2D image for the 2D shape
+                                  point=pupil_on_cut)
 
+        # move mouse on the whole screen
         pyautogui.moveTo(pointer[0], pointer[1])
 
         # draw circle at pupil_on_keyboard on the keyboard
@@ -203,7 +204,7 @@ while True:
 
         if is_blinking(right_eye_coordinates):
             pyautogui.click(button='right')
-            #pyautogui.doubleClick()
+            # pyautogui.doubleClick()
 
             pressed_key = identify_key(key_points=key_points, coordinate_X=pupil_on_keyboard[1],
                                        coordinate_Y=pupil_on_keyboard[0])
@@ -232,4 +233,3 @@ while True:
 # -------------------------------------------------------------------
 
 shut_off(camera)  # Shut camera / windows off
-
