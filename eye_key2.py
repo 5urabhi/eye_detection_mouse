@@ -202,7 +202,8 @@ while True:
         cv2.circle(keyboard_page, (pupil_on_keyboard[0], pupil_on_keyboard[1]), 40, (0, 255, 0), 3)
 
         if is_blinking(right_eye_coordinates):
-            pyautogui.click()
+            pyautogui.click(button='right')
+            #pyautogui.doubleClick()
 
             pressed_key = identify_key(key_points=key_points, coordinate_X=pupil_on_keyboard[1],
                                        coordinate_Y=pupil_on_keyboard[0])
